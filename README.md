@@ -3,6 +3,8 @@ Rancher catalog template for Gitea
 
 [Gitea](https://gitea.io) - Git with a cup of tea
 
+Converted into Kubernetes manifest for Rancher v2.x.
+
 Parameters
 ----------
 
