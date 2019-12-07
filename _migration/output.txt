@@ -1,0 +1,22 @@
+## This is the service-wise list of constructs that need to be handled specially.
+Please refer https://rancher.com/docs/rancher/v2.x/en/v1.6-migration/ to transition these to Rancher 2.0.
+gitea:
+  external_links:
+    Refer: https://rancher.com/blog/2018/2018-09-04-service_discovery_2dot0/
+    Please add the necessary Service Discovery Records for your Rancher 2.0 Kubernetes workload to implement the links.
+  labels:
+    >>io.rancher.scheduler.affinity:host_label
+      Refer: https://rancher.com/blog/2018/2018-08-29-scheduling-options-in-2-dot-0/
+      Please refer to the scheduling options in Rancher 2.0 to migrate this functionality
+    >>io.rancher.sidekicks
+  volumes:
+  volumes_from:
+gitea-conf:
+  labels:
+    >>io.rancher.container.start_once
+
+## More Docker/Rancher1.6 constructs that need to be transitioned to Kubernetes/Rancher 2.0 in a special way:
+  Rancher Metadata - Incase your applications depend on metadata.
+  Rancher 1.6 FQDN resolution format
+
+Please contact Rancher Support for more help to migrate these to Rancher 2.0, as there is no direct translation available.

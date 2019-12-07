@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    io.rancher.scheduler.affinity:host_label: data.gitea=true
+    io.rancher.sidekicks: gitea-conf
+    kompose.cmd: /home/oleg/Downloads/migration-tools_linux-amd64 parse
+    kompose.version: 1.16.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: gitea
+  name: gitea
+spec:
+  replicas: 0
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: gitea
+    spec:
+      containers:
+      - env:
+        - name: GITEA_CUSTOM
+          value: /app/gitea/custom
+        image: gitea/gitea:1.6.0-rc1
+        name: gitea
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: gitea-data
+      restartPolicy: Always
+      volumes:
+      - name: gitea-data
+        persistentVolumeClaim:
+          claimName: gitea-data
+status: {}

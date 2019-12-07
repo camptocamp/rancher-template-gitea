@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    io.rancher.container.start_once: "true"
+    kompose.cmd: /home/oleg/Downloads/migration-tools_linux-amd64 parse
+    kompose.version: 1.16.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: gitea-conf
+  name: gitea-conf
+spec:
+  replicas: 0
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: gitea-conf
+    spec:
+      containers:
+      - env:
+        - name: GITEA_MAILER_ENABLED
+        - name: GITEA_MAILER_FROM
+        - name: GITEA_MAILER_HOST
+        - name: GITEA_MAILER_PASSWD
+        - name: GITEA_MAILER_SKIP_VERIFY
+        - name: GITEA_MAILER_USER
+        - name: GITEA_SERVER_DOMAIN
+        - name: GITEA_SERVER_ROOT_URL
+          value: https:///
+        - name: GITEA_SERVER_SSH_PORT
+        - name: GITEA_SERVICE_DISABLE_REGISTRATION
+        - name: GITEA_SERVICE_ENABLE_NOTIFY_MAIL
+        - name: GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTHENTICATION
+        - name: GITEA_SERVICE_ENABLE_REVERSE_PROXY_AUTO_REGISTRATION
+        - name: GITEA_SERVICE_SHOW_REGISTRATION_BUTTON
+        image: camptocamp/gitea-conf:20170928-4
+        name: gitea-conf
+        resources: {}
+      restartPolicy: Always
+status: {}
